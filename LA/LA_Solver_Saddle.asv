@@ -11,15 +11,17 @@ V(nx, :) = 0; %Bottom
 
 for t = 1:time
 
-    V(:,1) = 1; %Left
-V(:,ny) = 1; % Right
-V(1,:) = 0; %Top
-V(nx, :) = 0; %Bottom
+    V(:,1) = 0; %Left
+    V(:,ny) = 0; % Right
+    V(50,50) = sin(t/(10pi));
+    %V(1,:) = 1; %Top
+    %V(ny, :) = 0; %Bottom
+
     V = imboxfilt(V,3);
      
 
-    %V(1,:) = V(2,:);
-    %V(ny,:) = V(ny-1,:);
+    V(1,:) = V(2,:);
+    V(ny,:) = V(ny-1,:);
 
     [Ex,Ey] = gradient(-V);
 
